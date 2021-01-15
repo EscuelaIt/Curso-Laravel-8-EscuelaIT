@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\SaludoController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('main');
 
 Route::get(
-    '/saludar',
+    '/saludar/{name?}',
     [
         SaludoController::class,
         'saludar'
     ]
-);
+)->where(['name' => '[a-zA-Z]+'])
+->name('saludar');
+

@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 
 class SaludoController extends Controller
 {
-    public function saludar()
+    public function saludar($name = "mundo")
     {
-        $x = 0;
-        $saludo = 'hola';
-        return "Hola Mundo";
+        return view('saludar')->with([
+            'name' => $name,
+            'text' => 'Bienvenidos',
+        ]);
     }
 }
