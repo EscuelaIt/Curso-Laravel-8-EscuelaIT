@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bill;
+use App\Models\Product;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $users = User::factory(10)->create();
+        $products = Product::factory(100)->create();
+        $bills = Bill::factory(10)->create();
+        $transactions = Transaction::factory(10)->create();
     }
 }
