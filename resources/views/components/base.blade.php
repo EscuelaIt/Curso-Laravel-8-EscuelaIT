@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saludos</title>
+    <title>{{ config('app.name') }}</title>
     <meta>
 </head>
 <body>
     <x-navbar></x-navbar>
-    <x-test></x-test>
+    <x-success></x-success>
+    <x-errors></x-errors>
     <img src="#" alt="Text">
     {{ $slot }}
 

@@ -25,4 +25,18 @@ class Product extends Model
     {
         return $this->belongsToMany(Transaction::class);
     }
+
+    public function getAllVisibleAtteributes()
+    {
+        $this->getAttributes();
+    }
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'price' => 'int',
+    ];
 }
