@@ -1,4 +1,4 @@
-<x-base>
+<x-app-layout>
     <h1>Welcome to the products view</h1>
 
     <a href="{{ route('products.create') }}">Crear Producto</a>
@@ -20,8 +20,14 @@
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->price }}</td>
                         <td>
-                            <a href="#">Mostrar</a>
-                            <a href="#">Editar</a>
+                            <a
+                                href="{{ route('products.show', ['product' => $product->id]) }}"
+                            >
+                                Mostrar
+                            </a>
+                            <a href="{{ route('products.edit', ['product' => $product->id]) }}">
+                                Editar
+                            </a>
                             <form
                                 action="{{ route('products.destroy', ['product' => $product->id]) }}"
                                 method="POST"
@@ -37,4 +43,4 @@
         </table>
     @endif
 
-</x-base>
+</x-app-layout>

@@ -15,6 +15,13 @@ class ProductController extends Controller
         ]);
     }
 
+    public function show(Product $product)
+    {
+        return view('admin.products.show')->with([
+            'product' => $product,
+        ]);
+    }
+
     public function create()
     {
         return view('admin.products.create');
@@ -35,22 +42,22 @@ class ProductController extends Controller
             ->withSuccess("El producto {$product->title} se creó con éxito");
     }
 
-    public function show(Product $product)
-    {
-        return view('products.show')->with([
-            'product' => $product,
-        ]);
-    }
-
     public function edit(Product $product)
     {
-        return view('products.edit')->with([
+        return view('admin.products.edit')->with([
             'product' => $product,
         ]);
     }
 
     public function update(Request $request, Product $product)
     {
+        $rules = [
+            'title' => ['required', 'max:255'],
+            'price' => ['required', 'integer', 'min:1', 'max:500'],
+        ];
+
+        $request->validate($rules);
+
         $product->fill($request->all());
 
         $product->save();
@@ -61,9 +68,13 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if ($product->transactions()->count() > 0) {
+            return redirect()->back()->withErrors('No se puede eliminar un producto con transacciones.');
+        }
+
         $product->delete();
 
         return redirect()->route('products.index')
-            ->withSuccess("El producto {$product->title} se editó con éxito");
+            ->withSuccess("El producto {$product->title} se eliminó con éxito");
     }
 }
