@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth'])->except(['create']);
+    // }
+
     /**
      * Display the login view.
      *
@@ -32,7 +37,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
