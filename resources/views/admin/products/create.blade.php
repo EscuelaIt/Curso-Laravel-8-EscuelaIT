@@ -13,6 +13,14 @@
         <form action="{{ route('products.store') }}" method="POST">
             @csrf
             <div class="mt-4">
+                <x-label for="slug" :value="__('Slug')" />
+
+                <x-input id="slug" class="block mt-1 w-full"
+                                type="text"
+                                name="slug"
+                                required autocomplete="current-slug" />
+            </div>
+            <div class="mt-4">
                 <x-label for="title" :value="__('Title')" />
 
                 <x-input id="title" class="block mt-1 w-full"

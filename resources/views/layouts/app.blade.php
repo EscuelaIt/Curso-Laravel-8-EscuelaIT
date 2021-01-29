@@ -31,6 +31,8 @@
 
             <!-- Page Content -->
             <main>
+                <x-success></x-success>
+                <x-errors></x-errors>
                 {{ $slot }}
             </main>
         </div>

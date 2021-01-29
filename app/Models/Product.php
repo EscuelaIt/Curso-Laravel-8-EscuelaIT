@@ -16,20 +16,11 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
+        'slug',
         'title',
         'price',
         // 'stock',
     ];
-
-    public function transactions()
-    {
-        return $this->belongsToMany(Transaction::class);
-    }
-
-    public function getAllVisibleAtteributes()
-    {
-        $this->getAttributes();
-    }
 
     /**
      * The attributes that should be cast to native types.
@@ -39,4 +30,20 @@ class Product extends Model
     protected $casts = [
         'price' => 'int',
     ];
+
+    public function transactions()
+    {
+        return $this->belongsToMany(Transaction::class);
+    }
+
+    // public function getAllVisibleAtteributes()
+    // {
+    //     $this->getAttributes();
+    // }
+
+    public function getFormattedPriceAttribute()
+    {
+        return '$ ' . $this->attributes['price'];
+    }
+
 }
